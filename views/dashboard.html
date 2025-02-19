@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - AWARA</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+
+    header {
+      background-color: #18a999; /* warna hijau minimalis */
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between; /* Memisahkan logo dan nav */
+      align-items: center; /* Vertikal center */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      position: relative;
+      flex-wrap: wrap; /* Membuat responsif */
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .awa {
+      color: black;
+    }
+
+    .logo img {
+      height: 40px; /* Tinggi logo */
+      margin-right: 0.5rem; /* Ruang antara logo dan teks */
+    }
+
+    .header-nav {
+      display: flex;
+      gap: 2rem;
+      align-items: center; /* Menjaga elemen dalam satu baris */
+    }
+
+    .nav-link {
+      color: #ffffff;
+      font-size: 1.1rem; /* Ukuran teks tautan */
+      font-weight: 500;
+      text-decoration: none;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    .nav-link:hover {
+      color: #e0e0e0; /* sedikit lebih terang saat di-hover */
+      transform: translateY(-2px);
+    }
+
+    .nav-link:active {
+      color: #cfcfcf;
+      transform: translateY(1px); /* sedikit turun saat ditekan */
+    }
+
+    .profile-container {
+      position: relative; /* Menambahkan posisi relative untuk dropdown */
+      display: flex; /* Menjaga elemen dalam satu baris */
+      align-items: center; /* Memastikan gambar dan link sejajar */
+    }
+
+    .profile-pic {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 0.5rem;
+    }
+
+    .menu-icon {
+      font-size: 1.5rem; /* Ukuran simbol menu */
+      color: #ffffff;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0; /* Menghapus padding default */
+      margin-left: 1rem; /* Ruang antara profile dan menu icon */
+    }
+
+    .dropdown {
+      display: none; /* Sembunyikan dropdown secara default */
+      position: absolute;
+      right: 0;
+      background-color: #fff;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      z-index: 1000; /* Menambahkan z-index untuk menampilkan di atas elemen lain */
+      border-radius: 5px; /* Menambahkan sudut melengkung */
+      opacity: 0; /* Sembunyikan dengan opacity */
+      transform: translateY(-10px); /* Posisi dropdown di atas sebelum muncul */
+      transition: opacity 0.3s ease, transform 0.3s ease; /* Menambahkan transisi */
+    }
+
+    .dropdown-item {
+      padding: 0.5rem 1rem;
+      color: #333;
+      text-decoration: none;
+      display: block;
+      transition: background-color 0.3s;
+    }
+
+    .dropdown-item:hover {
+      background-color: #f0f0f0;
+    }
+
+    /* Tampilkan dropdown saat tombol ditekan */
+    .show {
+      display: block; /* Menampilkan dropdown */
+      opacity: 1; /* Menambahkan opacity */
+      transform: translateY(0); /* Mengembalikan posisi ke normal */
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      color: #ffffff;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column; /* Mengubah arah flex pada layar kecil */
+        align-items: flex-start; /* Rata kiri */
+      }
+
+      .header-nav {
+        width: 100%; /* Menjaga navigasi dalam satu baris */
+        justify-content: space-between; /* Menjaga jarak antar elemen */
+      }
+
+      .nav-link {
+        font-size: 1rem; /* Ukuran teks tautan lebih kecil */
+      }
+
+      .menu-icon {
+        font-size: 1.5rem; /* Ukuran simbol menu lebih kecil */
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo"><span class="awa">AWA</span>RA</div>
+    <nav class="header-nav">
+      <div class="profile-container">
+        <img src="/images/default.webp" alt="Profile Picture" class="profile-pic">
+        <a href="/profile" class="nav-link">Profile</a>
+        <button class="menu-icon" onclick="toggleDropdown()">&#9776;</button> <!-- Simbol hamburger -->
+        <div id="dropdown" class="dropdown">
+          <a href="/settings" class="dropdown-item">Settings</a>
+          <a href="/logout" class="dropdown-item">Logout</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <script src="/js/toggle.js"></script>
+
+  <section class="language-container">
+    <button class="language-btn" onclick="window.location.href='/course/introduction-html'">
+      <div class="language-icon">
+        <img src="/images/introduction-html.webp" alt="HTML Icon">
+      </div>
+      <div class="language-details">
+        <h3>HTML</h3>
+        <p>HTML adalah fondasi dari setiap halaman web. Gampang dipelajari, cocok buat pemula, dan jadi skill penting buat kamu yang kerja di desain digital, marketing, atau konten. Kalau kamu pengen belajar front-end development, kursus ini bisa jadi titik awal yang asyik! Tenang aja, gak butuh pengalaman coding sebelumnya. Abis ini, kamu bisa lanjut belajar CSS dan JavaScript buat mendalami lebih jauh.</p>
+      </div>
+    </button>
+  
+    <!-- <button class="language-btn">
+      <div class="language-icon">
+        <img src="/images/introduction-js.webp" alt="JavaScript Icon">
+      </div>
+      <div class="language-details">
+        <h3>JavaScript</h3>
+        <p>JavaScript adalah bahasa pemrograman yang memberi interaksi pada halaman web. Setelah memahami HTML dan CSS, lanjutkan dengan kursus ini untuk memperkaya keterampilan front-end kamu!</p>
+      </div>
+    </button> -->
+  </section>
+</body>
+</html>
