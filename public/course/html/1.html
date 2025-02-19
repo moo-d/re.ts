@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Lesson 1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #ffffff;
+            color: #333;
+        }
+        .lesson-container {
+            width: 90%;
+            max-width: 800px;
+            padding: 25px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .slide {
+            display: none;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .active {
+            display: block;
+        }
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        button {
+            background-color: #18a999;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+        button:hover {
+            background-color: #155f5f;
+        }
+        .word-options {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .word {
+            background-color: #18a999;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+        .word:hover {
+            background-color: #155f5f;
+        }
+        .code-box {
+            display: inline-block;
+            padding: 12px 18px;
+            background: #1e1e1e;
+            color: #ffffff;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            margin-right: 10px;
+        }
+        .code-placeholder {
+            display: inline-block;
+            padding: 12px 18px;
+            background: #1e1e1e;
+            color: #ffffff;
+            font-family: 'Courier New', monospace;
+            border: 2px solid #ffffff;
+            min-width: 50px;
+            text-align: center;
+            border-radius: 6px;
+            margin-right: 10px;
+        }
+        .progress-bar {
+            height: 8px;
+            width: 100%;
+            background: #ddd;
+            margin-top: 20px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            border-radius: 10px;
+        }
+        .progress {
+            height: 8px;
+            background: #18a999;
+            width: 0%;
+            transition: width 0.3s;
+            border-radius: 10px;
+        }
+        .feedback-box {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            transform: translateY(100%);
+            transition: transform 0.5s ease-in-out, height 0.5s ease-in-out;
+        }
+        .feedback-box.show {
+            height: 33vh;
+            transform: translateY(0);
+        }
+        .correct {
+            background: #28a745;
+        }
+        .incorrect {
+            background: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <div class="lesson-container">
+        <div class="slide active" id="slide1">
+            <h2>Welcome to HTML</h2>
+            <p>Setiap website yang pernah kamu kunjungin itu dibangun pake <b>HTML code.</b></p>
+            <br>
+            <p>Di kursus ini, kamu bakal belajar bikin web page sendiri dari nol!</p>
+            <button onclick="nextSlide()">Next</button>
+        </div>
+        <div class="slide" id="slide2">
+            <p>Tag itu pake tanda kurung sudut <b><>.</b></p>
+            <p>Lengkapin tag elemen <button> ini, yuk!</p>
+            <div class="code-container" style="margin-top: 20px;">
+                <span class="code-placeholder"></span>
+                <span class="code-box">button&gt;</span>
+            </div>
+            <div class="word-options">
+                <span class="word" onclick="selectAnswer(this, '&lt;')">&lt;</span>
+                <span class="word" onclick="selectAnswer(this, '{')">{</span>
+            </div>
+            <button style="margin-top: 20px;" onclick="checkAnswer()">Check</button>
+        </div>
+        <div class="navigation">
+            <button onclick="prevSlide()">Back</button>
+            <button id="continue" onclick="handleContinue()" style="display: none;">Continue</button>
+            <button id="try-again" onclick="resetQuestion()" style="display: none;">Try Again</button>
+        </div>
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+    </div>
+    <div class="feedback-box" id="feedback-box">
+        <p id="feedback-text"></p>
+    </div>
+    <script>
+        let currentSlide = 0;
+        let selectedAnswer = null;
+        const slides = document.querySelectorAll(".slide");
+        function showSlide(index) {
+            document.querySelectorAll(".slide").forEach((slide, i) => {
+                slide.classList.toggle("active", i === index);
+            });
+        }
+        function nextSlide() {
+            if (currentSlide < document.querySelectorAll(".slide").length - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        }
+        function selectAnswer(element, answer) {
+            selectedAnswer = answer;
+            document.querySelector(".code-placeholder").innerText = element.innerText;
+        }
+        function checkAnswer() {
+            const feedbackBox = document.getElementById("feedback-box");
+            const feedbackText = document.getElementById("feedback-text");
+            if (selectedAnswer === "<") {
+                feedbackText.innerText = "Correct!";
+                feedbackBox.className = "feedback-box show correct";
+                document.getElementById("continue").style.display = "inline-block";
+            } else {
+                feedbackText.innerText = "Incorrect, try again.";
+                feedbackBox.className = "feedback-box show incorrect";
+                document.getElementById("try-again").style.display = "inline-block";
+            }
+        }
+        function handleContinue() {
+            if (currentSlide < slides.length - 1) {
+                nextSlide();
+                document.getElementById("feedback-box").classList.remove("show");
+            } else {
+                window.history.back();
+            }
+        }
+
+    </script>
+</body>
+</html>HTML code is based on tags.
+
+<button>
+
