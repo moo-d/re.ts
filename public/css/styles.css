@@ -1,0 +1,235 @@
+/* Reset CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f5f7fa;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  background-color: #fff;
+  padding: 1rem 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #18a999;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+  color: #18a999;
+}
+
+/* Hero Section */
+.hero-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+  background: linear-gradient(135deg, #e8f6f5, #f0fbfc);
+  padding: 2rem;
+}
+
+.hero-content {
+  text-align: center;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+.cta-btn {
+  background-color: #18a999;
+  color: white;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.cta-btn:hover {
+  background-color: #14897d;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #fff;
+  color: #777;
+  margin-top: auto;
+  font-size: 0.9rem;
+}
+
+/* Additional styles for auth forms */
+.auth-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh; /* Ensures the form is vertically centered */
+}
+
+.auth-form {
+  background-color: #fff;
+  padding: 2rem;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  width: 100%;
+  max-width: 400px; /* Limits form width on larger screens */
+  text-align: center;
+}
+
+.auth-form h1 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.auth-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-form input {
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.auth-form button {
+  background-color: #18a999;
+  color: white;
+  padding: 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.auth-form button:hover {
+  background-color: #14897d;
+}
+
+.error-message {
+  color: #ff4c4c;
+  background-color: #ffe6e6;
+  border: 1px solid #ff1a1a;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  display: none;
+}
+
+.language-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.language-btn {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  border: none;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+}
+
+.language-btn:hover {
+  background-color: #eaeaea;
+  transform: translateY(-3px);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.language-btn:active {
+  background-color: #dcdcdc;
+  border-color: #bbb;
+  transform: translateY(1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.language-icon img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.language-details h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.language-details p {
+  margin: 5px 0 0;
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .language-container {
+    padding: 10px;
+  }
+
+  .language-btn {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .language-details p {
+    font-size: 0.85rem;
+  }
+}
